@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Folio } from './folios/entities/folio.entity';
 import * as dotenv from 'dotenv'
 
+dotenv.config();
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({

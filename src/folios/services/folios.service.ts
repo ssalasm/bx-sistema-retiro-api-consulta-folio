@@ -12,11 +12,13 @@ export class FoliosService {
 
     findAll() {
         // return this.foliosRepo.find();
-        return this.foliosRepo.query('');
+        return this.foliosRepo.query(process.env.DB_CALL_SELECT);
     }
 
     async generarNumeroPickup(): Promise<any> {
-        const folio = await this.foliosRepo.query('');
+        const folio = await this.foliosRepo.query(
+            process.env.DB_CALL_PICKUP,
+        );
         return folio;
     }
 

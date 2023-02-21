@@ -3,6 +3,7 @@ import { FoliosModule } from './folios/folios.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Folio } from './folios/entities/folio.entity';
 import * as dotenv from 'dotenv';
+import { HealthModule } from './health/health.module';
 
 dotenv.config();
 
@@ -21,7 +22,8 @@ dotenv.config();
       retryDelay: 3000,
       retryAttempts: 10,
     }),    
-    FoliosModule
+    FoliosModule,
+    HealthModule
   ],
   controllers: [],
   providers: [],

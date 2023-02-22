@@ -3,6 +3,7 @@ version: '3.3'
 services:
   app:
     build: .
+    image: bx-sistema-retiro-api-consulta-folio:latest
     ports:
       - '3000:3000'
     environment:

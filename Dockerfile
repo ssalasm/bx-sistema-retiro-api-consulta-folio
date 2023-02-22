@@ -1,13 +1,17 @@
-FROM node:14-alpine
+FROM node:18.14.0-alpine 
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN rm -rf node_modules && \
+    npm cache clean --force && \
+    npm install
+
+RUN npm install @nestjs/axios
 
 COPY . .
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "start:dev" ]
+CMD [ "npm", "run", "start" ]

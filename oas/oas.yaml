@@ -1,0 +1,297 @@
+openapi: 3.0.0
+paths:
+  /api/pickup-request/pickup-creator/v1/pickup:
+    post:
+      operationId: Post_Retiro_pickup
+      summary: Operation API Method
+      parameters: []
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "401":
+          description: Unauthorized
+        "403":
+          description: ""
+        "404":
+          description: ""
+      tags:
+        - Retiro
+    get:
+      operationId: Get_Retiro_pickup
+      summary: Operation API Method
+      parameters: []
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "401":
+          description: Unauthorized
+        "403":
+          description: ""
+        "404":
+          description: ""
+      tags:
+        - Retiro
+  "/api/pickup-request/pickup-creator/v1/pickup/{id}":
+    patch:
+      operationId: Patch_Retiro_pickup_id
+      summary: Operation API Method
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "401":
+          description: Unauthorized
+        "403":
+          description: ""
+        "404":
+          description: ""
+      tags:
+        - Retiro
+    delete:
+      operationId: Delete_Retiro_pickup_id
+      summary: Operation API Method
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "401":
+          description: Unauthorized
+        "403":
+          description: ""
+        "404":
+          description: ""
+      tags:
+        - Retiro
+    get:
+      operationId: Get_Retiro_pickup_id
+      summary: Operation API Method
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "401":
+          description: Unauthorized
+        "403":
+          description: ""
+        "404":
+          description: ""
+      tags:
+        - Retiro
+  /api/pickup-request/pickup-creator/v1/health:
+    get:
+      operationId: check
+      summary: Operation API Method
+      parameters: []
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "401":
+          description: Unauthorized
+        "403":
+          description: ""
+        "404":
+          description: ""
+        "503":
+          description: The Health Check is not successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  info:
+                    type: object
+                    example:
+                      database:
+                        &a1
+                        status: up
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+                    nullable: true
+                  error:
+                    type: object
+                    example:
+                      redis:
+                        &a2
+                        status: down
+                        message: Could not connect
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+                    nullable: true
+                  details:
+                    type: object
+                    example:
+                      database: *a1
+                      redis: *a2
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+      tags:
+        &a3
+        - Health
+  /api/pickup-request/pickup-creator/v1/health/liveness:
+    get:
+      operationId: liveness
+      summary: Operation API Method
+      parameters: []
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "401":
+          description: Unauthorized
+        "403":
+          description: ""
+        "404":
+          description: ""
+      tags: *a3
+  /api/pickup-request/pickup-creator/v1/health/readiness:
+    get:
+      operationId: ping
+      summary: Operation API Method
+      parameters: []
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: ""
+        "401":
+          description: Unauthorized
+        "403":
+          description: ""
+        "404":
+          description: ""
+        "503":
+          description: The Health Check is not successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  info:
+                    type: object
+                    example:
+                      database:
+                        &a4
+                        status: up
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+                    nullable: true
+                  error:
+                    type: object
+                    example:
+                      redis:
+                        &a5
+                        status: down
+                        message: Could not connect
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+                    nullable: true
+                  details:
+                    type: object
+                    example:
+                      database: *a4
+                      redis: *a5
+                    additionalProperties:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                      additionalProperties:
+                        type: string
+      tags: *a3
+info:
+  title: Aop Kranio Bluex
+  description: The Aop Kranio Bluex API description
+  version: 0.0.1
+  contact: {}
+  license:
+    name: Blue Express
+    url: https://www.blue.cl
+tags: []
+servers:
+  - url: http://{app}:undefined
+    description: Local Environment
+    variables:
+      app:
+        default: localhost
+  - url: https://{app}.bluex.cl
+    description: Development Environment
+    variables:
+      app:
+        default: devapigw
+  - url: https://{app}.bluex.cl
+    description: QA - Environment
+    variables:
+      app:
+        default: qaapigw
+  - url: https://{app}.bluex.cl
+    description: Production Environment
+    variables:
+      app:
+        default: apigw
+components:
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+  schemas: {}
+security:
+  - basic: []

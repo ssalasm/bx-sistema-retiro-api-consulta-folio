@@ -5,10 +5,9 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN rm -rf node_modules && \
+    rm -f package-lock.json && \
     npm cache clean --force && \
     npm install
-
-RUN npm install @nestjs/axios
 
 COPY . .
 
